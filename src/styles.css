@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+/* titulo negro */
+@import url("https://fonts.googleapis.com/css?family=Work+Sans");
+
+.titulo-negro{
+
+    font-family: 'Work Sans', sans-serif;
+    font-size: 64px;
+    color: black;
+    
+}
+
+.titulo-rojo{
+
+    font-family: 'Work Sans', sans-serif;
+    font-size: 64px;
+    color: #EC0000;
+    
+}
