@@ -1,13 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 /* titulo negro */
-@import url("https://fonts.googleapis.com/css?family=Work+Sans");
+
 
 .titulo-negro{
 
     font-family: 'Work Sans', sans-serif;
     font-size: 64px;
     color: black;
-    
+    font-weight: 800;
+}
+
+.subtitulo{
+
+    font-family: 'Work Sans', sans-serif;
+    font-size: 40px;
+    color: black;
+    font-weight: 800;
 }
 
 .titulo-rojo{
@@ -15,5 +23,16 @@
     font-family: 'Work Sans', sans-serif;
     font-size: 64px;
     color: #EC0000;
-    
+    font-weight: 800;
 }
+
+
+.parafo-mediano{
+    font-family: 'Work Sans', sans-serif;
+    font-size: 36px;
+    color: black;
+    font-weight: 100;
+
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
