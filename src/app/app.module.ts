@@ -14,6 +14,7 @@ import { LoremIpsumPruebaComponent } from './lorem-ipsum-prueba/lorem-ipsum-prue
 import { PageFooterComponent } from './page-footer/page-footer.component';
 import { ToolBarHeaderComponent } from './tool-bar-header/tool-bar-header.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
+import { PresentacionComponent } from './landing-page/presentacion/presentacion.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.co
     LoremIpsumPruebaComponent,
     PageFooterComponent,
     InicioSesionComponent,
-    RegistroUsuarioComponent
+    RegistroUsuarioComponent,
+    PresentacionComponent
   ],
   imports: [
     BrowserModule,
