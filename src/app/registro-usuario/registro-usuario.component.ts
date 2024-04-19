@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro-usuario',
   templateUrl: './registro-usuario.component.html',
-  styleUrls: ['./registro-usuario.component.css']
+  styleUrls: ['./registro-usuario.component.css'],
+  encapsulation: ViewEncapsulation.ShadowDom
 })
 export class RegistroUsuarioComponent implements OnInit {
 
@@ -14,8 +15,10 @@ export class RegistroUsuarioComponent implements OnInit {
   constructor(private router:Router, private formBuilder: FormBuilder){
 
     this.userForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      nombre:['',Validators.required],
+      correo:['',Validators.compose([Validators.required,Validators.email])],
+      contrasena:['',Validators.required],
+      nombrePerfil:['',Validators.required]
     })
   }
   
