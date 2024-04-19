@@ -1,0 +1,17 @@
+
+    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+    <h1 class="titulo-negro">Country Information</h1>
+    
+    <div *ngIf="error">
+      <p>Error: {{ error }}</p>
+    </div>
+    
+    <div *ngIf="countryInfo">
+      <h1 class="titulo-negro">Country Information</h1>
+      <!-- Display country information here -->
+       <p>Country Name: {{ countryInfo.country }}</p>
+  <p>Country Code: {{ countryInfo.code }}</p>
+    </div>
+    
+  
+  

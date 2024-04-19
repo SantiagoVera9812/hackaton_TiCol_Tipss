@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,8 +13,9 @@ import { AppComponent } from './app.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { LoremIpsumPruebaComponent } from './lorem-ipsum-prueba/lorem-ipsum-prueba.component';
 import { PageFooterComponent } from './page-footer/page-footer.component';
-import { ToolBarHeaderComponent } from './tool-bar-header/tool-bar-header.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
+import { ToolBarHeaderComponent } from './tool-bar-header/tool-bar-header.component';
+import { UserCountryComponent } from './user-country/user-country.component';
 import { PresentacionComponent } from './landing-page/presentacion/presentacion.component';
 
 @NgModule({
@@ -24,6 +26,7 @@ import { PresentacionComponent } from './landing-page/presentacion/presentacion.
     PageFooterComponent,
     InicioSesionComponent,
     RegistroUsuarioComponent,
+    UserCountryComponent
     PresentacionComponent
   ],
   imports: [
@@ -35,7 +38,8 @@ import { PresentacionComponent } from './landing-page/presentacion/presentacion.
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule 
   ],
   providers: [],
   bootstrap: [AppComponent]
