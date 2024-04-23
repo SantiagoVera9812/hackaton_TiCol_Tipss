@@ -18,6 +18,11 @@ import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.co
 import { ToolBarHeaderComponent } from './tool-bar-header/tool-bar-header.component';
 import { UserCountryComponent } from './user-country/user-country.component';
 
+import { AirportApiKeyService } from './airport-api-key.service';
+import { CountryRestApiService } from './country-rest-api.service';
+import { ListaDePaisesComponent } from './lista-de-paises/lista-de-paises.component';
+import { GetAirportsComponent } from './get-airports/get-airports.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +32,9 @@ import { UserCountryComponent } from './user-country/user-country.component';
     InicioSesionComponent,
     RegistroUsuarioComponent,
     UserCountryComponent,
-    PresentacionComponent
+    PresentacionComponent,
+    ListaDePaisesComponent,
+    GetAirportsComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +48,10 @@ import { UserCountryComponent } from './user-country/user-country.component';
     ReactiveFormsModule,
     HttpClientModule 
   ],
-  providers: [],
+  providers: [
+    CountryRestApiService,
+    AirportApiKeyService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
