@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-registro-usuario',
   templateUrl: './registro-usuario.component.html',
-  styleUrls: ['./registro-usuario.component.css'],
+  styleUrls: ['./registro-usuario.component.scss'],
   encapsulation: ViewEncapsulation.ShadowDom
 })
 export class RegistroUsuarioComponent implements OnInit {
@@ -22,7 +22,10 @@ export class RegistroUsuarioComponent implements OnInit {
     })
   }
   
-  onSubmit(){}
+  onSubmit(){
+
+    this.router.navigate(['/lorem-ipsum']);
+  }
 
   ngOnInit(): void {
   }

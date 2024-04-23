@@ -20,7 +20,7 @@ export class ListaDePaisesComponent implements OnInit {
       },
       error => {
         console.error('Error fetching countries:', error);
-        // Handle error if needed
+        
       }
     );
   }
