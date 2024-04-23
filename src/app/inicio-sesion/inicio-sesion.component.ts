@@ -20,7 +20,11 @@ export class InicioSesionComponent implements OnInit {
     })
   }
   
-  onSubmit(){}
+  onSubmit(){
+
+    this.router.navigate(['/lorem-ipsum']);
+
+  }
 
   ngOnInit(): void {
   }

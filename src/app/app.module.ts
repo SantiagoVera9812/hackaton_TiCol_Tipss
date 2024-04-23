@@ -17,6 +17,8 @@ import { PageFooterComponent } from './page-footer/page-footer.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 import { ToolBarHeaderComponent } from './tool-bar-header/tool-bar-header.component';
 import { UserCountryComponent } from './user-country/user-country.component';
+import { MatDividerModule } from '@angular/material/divider';
+
 
 import { AirportApiKeyService } from './airport-api-key.service';
 import { CountryRestApiService } from './country-rest-api.service';
@@ -46,7 +48,8 @@ import { GetAirportsComponent } from './get-airports/get-airports.component';
     MatButtonModule,
     MatIconModule,
     ReactiveFormsModule,
-    HttpClientModule 
+    HttpClientModule,
+    MatDividerModule
   ],
   providers: [
     CountryRestApiService,

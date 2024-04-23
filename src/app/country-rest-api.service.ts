@@ -22,7 +22,7 @@ export class CountryRestApiService {
   getAllCountries(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}all`).pipe(
       map(response => {
-        
+        console.log(response)
         return response.map(country => ({
           name: country.name.common,
           region: country.region,
@@ -31,7 +31,8 @@ export class CountryRestApiService {
         timezone: country.timezones[0],
         borders: country.borders,
         latlng: country.latlng,
-        maps: country.maps.openStreetMaps
+        maps: country.maps.openStreetMaps,
+        cca2: country.cca2
         }));
       })
     );

@@ -33,7 +33,7 @@ export class AirportApiKeyService {
 
   getAirports(keyword: string, countryCode: string, authToken: string): Observable<any> {
     const params = new HttpParams()
-      .set('subType', 'AIRPORT')
+      .set('subType', 'CITY')
       .set('keyword', keyword)
       .set('countryCode', countryCode)
       .set('page[limit]', '10')

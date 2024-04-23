@@ -1,1 +1,15 @@
-<p>lista-de-paises works!</p>
+<div class="scrollable-container">
+    <mat-divider></mat-divider>
+    <div class="country-list">
+      <ng-container *ngFor="let country of countries">
+          <mat-card>
+              <mat-card-title class="card-title">
+                  <span>{{ country.name }}</span>
+                  <span class="flag">{{ country.flag }}</span>
+              </mat-card-title>
+          </mat-card>
+          <mat-divider></mat-divider>
+      </ng-container>
+    </div>
+  </div>
+  
