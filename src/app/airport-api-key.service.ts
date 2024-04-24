@@ -13,7 +13,7 @@ export class AirportApiKeyService {
 
 
   private apiUrl = 'https://test.api.amadeus.com/v1/reference-data/locations';
-
+  private cityPath = '/cities'
   private tokenUrl = 'https://test.api.amadeus.com/v1/security/oauth2/token';
   private clientId = '6GDSkXgVcB9jzbrAroPZOxSzxHiQTf0H';
   private clientSecret = 'oiuORAcfTs0Gstc7';
@@ -31,9 +31,26 @@ export class AirportApiKeyService {
     return this.http.post<any>(this.tokenUrl, body, { headers });
   }
 
+  getCityWithAirports(keyword: string, countryCode: string, authToken: string): Observable<any> {
+
+    const url = `${this.apiUrl}${this.cityPath}`
+    const params = new HttpParams()
+    .set('keyword', keyword)
+    .set('countryCode', countryCode)
+    .set('max', '10')
+    .set('include', 'AIRPORTS');
+
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${authToken}`
+    });
+
+    return this.http.get<any>(url, { params, headers });
+
+  }
   getAirports(keyword: string, countryCode: string, authToken: string): Observable<any> {
     const params = new HttpParams()
-      .set('subType', 'CITY')
+      .set('subType', 'AIRPORT')
       .set('keyword', keyword)
       .set('countryCode', countryCode)
       .set('page[limit]', '10')

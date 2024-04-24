@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CountryRestApiService } from '../country-rest-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-de-paises',
@@ -10,7 +11,7 @@ export class ListaDePaisesComponent implements OnInit {
 
   countries: any[] = [];
 
-  constructor(private countryService: CountryRestApiService) { }
+  constructor(private router:Router, private countryService: CountryRestApiService) { }
 
   ngOnInit(): void {
     this.countryService.getAllCountries().subscribe(
@@ -23,6 +24,10 @@ export class ListaDePaisesComponent implements OnInit {
         
       }
     );
+  }
+
+  redirectToCountry(countryId: number) {
+    this.router.navigate(['/country', countryId]);
   }
   }
 
