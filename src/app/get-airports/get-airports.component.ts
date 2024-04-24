@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { AirportApiKeyService } from '../airport-api-key.service';
 import { ActivatedRoute } from '@angular/router';
+import { AirportApiKeyService } from '../airport-api-key.service';
+import { CountryRestApiService } from '../country-rest-api.service';
 
 @Component({
   selector: 'app-get-airports',
@@ -11,24 +12,28 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class GetAirportsComponent implements OnInit {
 
-  airports: any[] = []; 
-  accessToken: string = ''; 
+  airports: any[] = [];
+  airportArray: any[] = [];
+  city: any[] = [];
+  states: any[] = [];
+  accessToken: string = '';
+  countyrCityAccessToken = '';
   countyCode: string = '';
-  kewyordCity: string = '';
+  keywordCity: string = '';
   originalLabel: string = 'Escribe una ciudad a donde quieres ir';
 
-  constructor(private activatedRouter: ActivatedRoute, private airportService: AirportApiKeyService) { }
+  constructor(private activatedRouter: ActivatedRoute, private airportService: AirportApiKeyService, private countryCityApiService: CountryRestApiService) { }
 
   ngOnInit(): void {
     this.activatedRouter.params.subscribe(params => {
 
       this.countyCode = params['id'];
-      console.log('The country we are in is', this.countyCode)
+      console.log('The country we are in is', this.countyCode);
+      this.getCountryStatesToken(this.countyCode)
     }
 
     );
-    const keywordCity = 'PARIS'
-    this.getToken(keywordCity, this.countyCode);
+    
   }
 
   getToken(keyword: string, countryCode: string): void {
@@ -48,9 +53,13 @@ export class GetAirportsComponent implements OnInit {
 
     this.airportService.getCityWithAirports(keyword, countryCode, this.accessToken).subscribe(
       airports => {
-        console.log('Airports:', airports);
-        this.airports = airports; 
+        console.log('Airports:', airports.included);
+        this.airports = airports.included.airports; 
         console.log(this.airports)
+        for (const key in this.airports) {
+          if (this.airports.hasOwnProperty(key)) {
+            console.log(this.airports[key])
+            this.airportArray.push(this.airports[key])}}
       },
       error => console.error('Error fetching airports:', error)
     );
@@ -59,7 +68,38 @@ export class GetAirportsComponent implements OnInit {
 
   searchAirports(): void {
    
-    console.log('Valor original del mat-label:', this.kewyordCity);
+    console.log('Valor seleccionado por el usuario:', this.keywordCity);
+    this.getToken(this.keywordCity, this.countyCode);
+  }
+
+  getCountryCityToken(countryCode: string, statesCode: string): void{
+
+    this.countryCityApiService.getCountryCities(countryCode,statesCode).subscribe(
+      cities => {
+        this.city = cities; 
+        console.log(this.city)
+        
+      },
+      error => console.error('Error:', error)
+    );
+  }
+
+  getCountryStatesToken(countryCode: string): void{
+    this.countryCityApiService.getCountryStates(countryCode).subscribe(
+      states => {
+        this.states = states; 
+        console.log(this.states) 
+      },
+      error => console.error('Error:', error)
+
+    ) 
+  }
+
+  getStateISO2(state: any): void {
+    const iso2code = state.iso2; 
+    console.log('ISO 2 del estado seleccionado:', iso2code);
+    this.getCountryCityToken(this.countyCode,iso2code)
+    
   }
 
   /*
