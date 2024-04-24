@@ -1,9 +1,55 @@
 
 
-<form (ngSubmit)="searchAirports()" class="example-form">
+<form (ngSubmit)="searchAirports()" class="example-form" novalidate #f="ngForm">
     <mat-form-field class="example-full-width">
       <mat-label>{{ originalLabel }}</mat-label>
-      <input matInput [ngModel]="kewyordCity" placeholder="Ex. Bogota, Buenos Aires, Santiago de Chile">
+      <input matInput name="country" [(ngModel)]="keywordCity" placeholder="Ex. Bogota, Buenos Aires, Santiago de Chile">
     </mat-form-field>
-    <button>Buscar</button>
+    <button mat-stroked-button type="submit" [disabled]="!f.valid">Buscar</button>
 </form>
+
+<div class="scrollable-container">
+  <mat-divider></mat-divider>
+  <div class="country-list">
+    <ng-container *ngFor="let state of states">
+        <mat-card class="clickable-card" (click)="getStateISO2(state)">
+            <mat-card-title class="card-title">
+                <span>{{ state.name }}</span>
+            </mat-card-title>
+        </mat-card>
+        <mat-divider></mat-divider>
+    </ng-container>
+  </div>
+</div>
+
+<ng-container *ngIf="airportArray && airportArray.length > 0">
+  <div class="scrollable-container">
+    <mat-divider></mat-divider>
+    <div class="country-list">
+      <ng-container *ngFor="let airport of airportArray">
+          <mat-card class="clickable-card">
+              <mat-card-title class="card-title">
+                  <span>{{ airport.name }}</span>
+              </mat-card-title>
+          </mat-card>
+          <mat-divider></mat-divider>
+      </ng-container>
+    </div>
+  </div>
+  </ng-container>
+
+  <ng-container *ngIf="city && city.length > 0">
+    <div class="scrollable-container">
+      <mat-divider></mat-divider>
+      <div class="country-list">
+        <ng-container *ngFor="let itBeACity of city">
+            <mat-card class="clickable-card">
+                <mat-card-title class="card-title">
+                    <span>{{ itBeACity.name }}</span>
+                </mat-card-title>
+            </mat-card>
+            <mat-divider></mat-divider>
+        </ng-container>
+      </div>
+    </div>
+    </ng-container>

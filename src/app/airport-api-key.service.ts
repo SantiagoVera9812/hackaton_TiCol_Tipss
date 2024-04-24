@@ -11,7 +11,6 @@ import { Observable } from 'rxjs';
 
 export class AirportApiKeyService {
 
-
   private apiUrl = 'https://test.api.amadeus.com/v1/reference-data/locations';
   private cityPath = '/cities'
   private tokenUrl = 'https://test.api.amadeus.com/v1/security/oauth2/token';
