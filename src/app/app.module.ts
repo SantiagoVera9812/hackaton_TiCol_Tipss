@@ -18,7 +18,7 @@ import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.co
 import { ToolBarHeaderComponent } from './tool-bar-header/tool-bar-header.component';
 import { UserCountryComponent } from './user-country/user-country.component';
 import { MatDividerModule } from '@angular/material/divider';
-
+import { FormsModule } from '@angular/forms';
 
 import { AirportApiKeyService } from './airport-api-key.service';
 import { CountryRestApiService } from './country-rest-api.service';
@@ -49,7 +49,8 @@ import { GetAirportsComponent } from './get-airports/get-airports.component';
     MatIconModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatDividerModule
+    MatDividerModule,
+    FormsModule
   ],
   providers: [
     CountryRestApiService,

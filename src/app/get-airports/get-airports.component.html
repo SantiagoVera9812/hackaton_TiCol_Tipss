@@ -1,1 +1,9 @@
-<p>get-airports works!</p>
+
+
+<form (ngSubmit)="searchAirports()" class="example-form">
+    <mat-form-field class="example-full-width">
+      <mat-label>{{ originalLabel }}</mat-label>
+      <input matInput [ngModel]="kewyordCity" placeholder="Ex. Bogota, Buenos Aires, Santiago de Chile">
+    </mat-form-field>
+    <button>Buscar</button>
+</form>

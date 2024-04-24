@@ -2,7 +2,7 @@
     <mat-divider></mat-divider>
     <div class="country-list">
       <ng-container *ngFor="let country of countries">
-          <mat-card>
+          <mat-card class="clickable-card" (click)="redirectToCountry(country.cca2)">
               <mat-card-title class="card-title">
                   <span>{{ country.name }}</span>
                   <span class="flag">{{ country.flag }}</span>
