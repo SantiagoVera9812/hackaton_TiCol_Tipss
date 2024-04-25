@@ -1,33 +1,72 @@
 
 
-<form (ngSubmit)="searchAirports()" class="example-form" novalidate #f="ngForm">
-    <mat-form-field class="example-full-width">
-      <mat-label>{{ originalLabel }}</mat-label>
-      <input matInput name="country" [(ngModel)]="keywordCity" placeholder="Ex. Bogota, Buenos Aires, Santiago de Chile">
-    </mat-form-field>
-    <button mat-stroked-button type="submit" [disabled]="!f.valid">Buscar</button>
-</form>
 
-<div class="scrollable-container">
-  <mat-divider></mat-divider>
-  <div class="country-list">
-    <ng-container *ngFor="let state of states">
-        <mat-card class="clickable-card" (click)="getStateISO2(state)">
-            <mat-card-title class="card-title">
-                <span>{{ state.name }}</span>
-            </mat-card-title>
-        </mat-card>
-        <mat-divider></mat-divider>
-    </ng-container>
+    <mat-card-title>Buscar Aeropuerto</mat-card-title>
+  <mat-card-content class="horizontal-content">
+    <form (ngSubmit)="searchAirportsByCity()" class="example-form" novalidate #cityForm="ngForm">
+      <mat-form-field class="example-full-width">
+        <mat-label>{{ originalLabel }}</mat-label>
+        <input matInput name="country" [(ngModel)]="keywordCity" placeholder="Ex. Bogota, Buenos Aires, Santiago de Chile">
+      </mat-form-field>
+      <button mat-stroked-button type="submit" [disabled]="!cityForm.valid">Buscar</button>
+    </form>
+
+    <form (ngSubmit)="searchAirports()" class="example-form" novalidate #airportForm="ngForm">
+      <mat-form-field class="example-full-width">
+        <mat-label>{{ originalLabelAirport }}</mat-label>
+        <input matInput name="country" [(ngModel)]="keywordAirport" placeholder="Ex. Hartsfield-Jackson, Londres Heathrow, París Charles de Gaulle">
+      </mat-form-field>
+      <button mat-stroked-button type="submit" [disabled]="!airportForm.valid">Buscar</button>
+    </form>
+
+    <div class="horizontal-scroll-container">
+      <div class="scrollable-container">
+              <mat-divider></mat-divider>
+              <div class="country-list">
+                <ng-container *ngFor="let state of states">
+                  <mat-card class="clickable-card" (click)="getStateISO2(state)">
+                    <mat-card-title class="card-title">
+                      <span>{{ state.name }}</span>
+                    </mat-card-title>
+                  </mat-card>
+                  <mat-divider></mat-divider>
+                </ng-container>
+              </div>
+      </div>
+
+      <div class="scrollable-container">
+              <mat-divider></mat-divider>
+              <div class="country-list">
+                <ng-container *ngIf="city && city.length > 0">
+                  <ng-container *ngFor="let itBeACity of city">
+                    <mat-card class="clickable-card" (click)="getCountryName(itBeACity)">
+                      <mat-card-title class="card-title-small">
+                        <span>{{ itBeACity.name }}</span>
+                      </mat-card-title>
+                    </mat-card>
+                    <mat-divider></mat-divider>
+                  </ng-container>
+                </ng-container>
+              </div>
+      </div>
+    </div>
+  </mat-card-content>
+
+
+<div class="subtitulo">
+  <span>{{ selectedStateName ? 'Buscar aeropuerto en: ' + selectedStateName : 'Selecciona en donde quieres buscar un aeropuerto' }}</span>
+  <div class="button-container">
+    <button mat-raised-button color="primary" (click)="getToken(selectedStateName, countyCode)">Buscar</button>
   </div>
 </div>
+
 
 <ng-container *ngIf="airportArray && airportArray.length > 0">
   <div class="scrollable-container">
     <mat-divider></mat-divider>
     <div class="country-list">
       <ng-container *ngFor="let airport of airportArray">
-          <mat-card class="clickable-card">
+          <mat-card class="clickable-card" (click)="getInfoWithIataCode(airport.iataCode)">
               <mat-card-title class="card-title">
                   <span>{{ airport.name }}</span>
               </mat-card-title>
@@ -38,18 +77,3 @@
   </div>
   </ng-container>
 
-  <ng-container *ngIf="city && city.length > 0">
-    <div class="scrollable-container">
-      <mat-divider></mat-divider>
-      <div class="country-list">
-        <ng-container *ngFor="let itBeACity of city">
-            <mat-card class="clickable-card">
-                <mat-card-title class="card-title">
-                    <span>{{ itBeACity.name }}</span>
-                </mat-card-title>
-            </mat-card>
-            <mat-divider></mat-divider>
-        </ng-container>
-      </div>
-    </div>
-    </ng-container>

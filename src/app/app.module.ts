@@ -24,6 +24,7 @@ import { AirportApiKeyService } from './airport-api-key.service';
 import { CountryRestApiService } from './country-rest-api.service';
 import { ListaDePaisesComponent } from './lista-de-paises/lista-de-paises.component';
 import { GetAirportsComponent } from './get-airports/get-airports.component';
+import { ConfirmarBusquedaVueloComponent } from './confirmar-busqueda-vuelo/confirmar-busqueda-vuelo.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { GetAirportsComponent } from './get-airports/get-airports.component';
     UserCountryComponent,
     PresentacionComponent,
     ListaDePaisesComponent,
-    GetAirportsComponent
+    GetAirportsComponent,
+    ConfirmarBusquedaVueloComponent
   ],
   imports: [
     BrowserModule,

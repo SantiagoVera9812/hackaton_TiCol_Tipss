@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AirportApiKeyService } from '../airport-api-key.service';
 import { CountryRestApiService } from '../country-rest-api.service';
 
@@ -11,6 +11,9 @@ import { CountryRestApiService } from '../country-rest-api.service';
 
 })
 export class GetAirportsComponent implements OnInit {
+  @Input() isEmbedded: boolean = false;
+  @Output() iataCodeChange = new EventEmitter<string>();
+  
 
   airports: any[] = [];
   airportArray: any[] = [];
@@ -19,10 +22,17 @@ export class GetAirportsComponent implements OnInit {
   accessToken: string = '';
   countyrCityAccessToken = '';
   countyCode: string = '';
+  selectedStateName: string = '';
+  keywordAirport: string = '';
   keywordCity: string = '';
   originalLabel: string = 'Escribe una ciudad a donde quieres ir';
+  originalLabelAirport: string = 'Escribe un aeropuerto a donde quieres ir';
+  ipAddress: string = '';
+  countryUser: string = '';
+  error: string = '';
 
-  constructor(private activatedRouter: ActivatedRoute, private airportService: AirportApiKeyService, private countryCityApiService: CountryRestApiService) { }
+
+  constructor(private activatedRouter: ActivatedRoute, private router: Router, private airportService: AirportApiKeyService, private countryCityApiService: CountryRestApiService) { }
 
   ngOnInit(): void {
     this.activatedRouter.params.subscribe(params => {
@@ -32,6 +42,17 @@ export class GetAirportsComponent implements OnInit {
       this.getCountryStatesToken(this.countyCode)
     }
 
+    );
+
+    this.countryCityApiService.getUserIPAddress().subscribe(
+      ipAddress => {
+        this.ipAddress = ipAddress;
+        this.fetchCountryInfo();
+      },
+      error => {
+        this.error = 'Failed to get IP address.';
+        console.error('Failed to get IP address:', error);
+      }
     );
     
   }
@@ -47,6 +68,8 @@ export class GetAirportsComponent implements OnInit {
       },
       error => console.error('Error:', error)
     );
+
+    
   }
 
   getCityAirports(keyword: string, countryCode: string): void{
@@ -66,7 +89,13 @@ export class GetAirportsComponent implements OnInit {
   
   }
 
-  searchAirports(): void {
+  searchAirports(): void{
+    this.getToken(this.keywordCity,this.countyCode);
+  }
+
+
+
+  searchAirportsByCity(): void {
    
     console.log('Valor seleccionado por el usuario:', this.keywordCity);
     this.getToken(this.keywordCity, this.countyCode);
@@ -97,14 +126,22 @@ export class GetAirportsComponent implements OnInit {
 
   getStateISO2(state: any): void {
     const iso2code = state.iso2; 
+    const stateName = state.name; 
+    console.log(stateName)
     console.log('ISO 2 del estado seleccionado:', iso2code);
     this.getCountryCityToken(this.countyCode,iso2code)
+    this.selectedStateName = stateName;
     
   }
 
-  /*
-  esta funcion funciona pero podriamos usarla en otra parte en nuestro codigo
-  obtiene los aeropuertos directamente sin preguntar por la ciudad
+  getCountryName(city: any): void{
+    console.log('Ciudad seleccionada', city.name)
+    this.selectedStateName = city.name
+  }
+
+ 
+
+  
   getAirports(keyword: string, countryCode: string): void {
     this.airportService.getAirports(keyword, countryCode, this.accessToken).subscribe(
       airports => {
@@ -114,6 +151,32 @@ export class GetAirportsComponent implements OnInit {
       },
       error => console.error('Error fetching airports:', error)
     );
-  } */
+  } 
+
+  getInfoWithIataCode(iataCode: string): void{
+    console.log(iataCode);
+    if (this.isEmbedded) {
+      console.log(iataCode)
+      this.iataCodeChange.emit(iataCode);
+    } else {
+     
+      this.router.navigate(['/country', this.countryUser, iataCode]);
+    }
+  }
+
+  fetchCountryInfo(): void {
+    this.countryCityApiService.fetchCountryInfo(this.ipAddress).subscribe(
+      country => {
+        this.countryUser = country;
+        console.log('Country:', this.countryUser);
+      },
+      error => {
+        this.error = 'Failed to fetch country information.';
+        console.error('Failed to fetch country information:', error);
+      }
+    );
+  }
 
 }
+
+
