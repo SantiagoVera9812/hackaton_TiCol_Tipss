@@ -15,6 +15,18 @@ export class CountryRestApiService {
   private citiesPath ='/cities'
   constructor(private http: HttpClient) { }
 
+  getUserIPAddress(): Observable<string> {
+    return this.http.get('https://api.ipify.org?format=json').pipe(
+      map((data: any) => data.ip)
+    );
+  }
+
+  fetchCountryInfo(ipAddress: string): Observable<string> {
+    return this.http.get(`https://api.country.is/${ipAddress}`).pipe(
+      map((data: any) => data.country)
+    );
+  }
+
   
 
   getCountryNameByCode(code: string): Observable<string> {

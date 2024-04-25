@@ -25,3 +25,21 @@
   .country-list {
     padding: 10px;
   }
+
+  .horizontal-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+
+  .horizontal-scroll-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .button-container {
+    margin-top: 10px; 
+  }
+  
