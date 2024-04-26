@@ -15,6 +15,7 @@ export class AirportApiKeyService {
   private cityPath = '/cities'
   private tokenUrl = 'https://test.api.amadeus.com/v1/security/oauth2/token';
   private clientId = '6GDSkXgVcB9jzbrAroPZOxSzxHiQTf0H';
+  private flightApiId = 'https://test.api.amadeus.com/v2/shopping/flight-offers';
   private clientSecret = 'oiuORAcfTs0Gstc7';
 
   constructor(private http: HttpClient) { 
@@ -62,5 +63,22 @@ export class AirportApiKeyService {
       });
 
     return this.http.get<any>(this.apiUrl, { params, headers });
+  }
+
+  getFlights(originIatacode: string, destinationIata: string, date: string, numOfAdults: number, authToken: string): Observable<any> {
+    
+    const params = new HttpParams()
+    .set('originLocationCode', originIatacode)
+    .set('destinationLocationCode', destinationIata)
+    .set('departureDate', date)
+    .set('adults', numOfAdults)
+    .set('nonStop', 'false')
+    .set('max', '250');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${authToken}`
+    });
+
+    return this.http.get<any>(this.flightApiId,{params, headers})
   }
 }
