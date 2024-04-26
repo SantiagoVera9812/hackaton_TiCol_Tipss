@@ -26,7 +26,7 @@ export class GetAirportsComponent implements OnInit {
   keywordAirport: string = '';
   keywordCity: string = '';
   originalLabel: string = 'Escribe una ciudad a donde quieres ir';
-  originalLabelAirport: string = 'Escribe un aeropuerto a donde quieres ir';
+  originalLabelAirport: string = 'Escribe el codigo IATA a donde quieres ir';
   ipAddress: string = '';
   countryUser: string = '';
   error: string = '';
@@ -72,6 +72,21 @@ export class GetAirportsComponent implements OnInit {
     
   }
 
+  getTokenAirport(keyword: string, countryCode: string): void {
+   
+    this.airportService.getToken().subscribe(
+      token => {
+        console.log('Token:', token);
+        this.accessToken = token.access_token; 
+        console.log('access token:', this.accessToken);
+        this.getAirports(keyword,countryCode)
+      },
+      error => console.error('Error:', error)
+    );
+
+    
+  }
+
   getCityAirports(keyword: string, countryCode: string): void{
 
     this.airportService.getCityWithAirports(keyword, countryCode, this.accessToken).subscribe(
@@ -90,7 +105,7 @@ export class GetAirportsComponent implements OnInit {
   }
 
   searchAirports(): void{
-    this.getToken(this.keywordCity,this.countyCode);
+    this.getTokenAirport(this.keywordAirport,this.countyCode);
   }
 
 
@@ -145,9 +160,8 @@ export class GetAirportsComponent implements OnInit {
   getAirports(keyword: string, countryCode: string): void {
     this.airportService.getAirports(keyword, countryCode, this.accessToken).subscribe(
       airports => {
-        console.log('Airports:', airports);
-        this.airports = airports; 
-        console.log(this.airports)
+        console.log('Airports:', airports.data[0]);
+        this.airportArray.push(airports.data[0])
       },
       error => console.error('Error fetching airports:', error)
     );

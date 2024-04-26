@@ -14,7 +14,7 @@
     <form (ngSubmit)="searchAirports()" class="example-form" novalidate #airportForm="ngForm">
       <mat-form-field class="example-full-width">
         <mat-label>{{ originalLabelAirport }}</mat-label>
-        <input matInput name="country" [(ngModel)]="keywordAirport" placeholder="Ex. Hartsfield-Jackson, Londres Heathrow, París Charles de Gaulle">
+        <input matInput name="country" [(ngModel)]="keywordAirport" placeholder="Ex. el IATA code es un codigo de tres palabras">
       </mat-form-field>
       <button mat-stroked-button type="submit" [disabled]="!airportForm.valid">Buscar</button>
     </form>

@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<div class="flight-info">
+    <span class="material-icons">flight_takeoff  </span>
+    <span>{{ this.iataOrigin }}</span>
+    <span class="material-icons">connecting_airports</span>
+    <span>{{ this.iataDeparture }}</span>
+    <span class="material-icons">flight_land</span>
+  </div>
+
 <app-get-airports [isEmbedded]="true" (iataCodeChange)="onIataCodeChange($event)"></app-get-airports>
+
+
+<form (ngSubmit)="submitForm()" *ngIf="showForm" class="example-form">
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha de partida</mat-label>
+      <input matInput type="date" name="date" [(ngModel)]="date" required>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Número de adultos</mat-label>
+      <input matInput type="number" name="numOfAdults" [(ngModel)]="numOfAdults" required>
+    </mat-form-field>
+    
+    <button mat-raised-button color="primary" type="submit">Enviar</button>
+  </form>
+  
+
+  <ng-container *ngIf="vuelos && vuelos.length > 0">
+    <div class="scrollable-container">
+      <mat-divider></mat-divider>
+      <div class="country-list">
+        <ng-container *ngFor="let vuelo of vuelos">
+            <mat-card class="clickable-card">
+                <mat-card-title class="card-title">
+                    <span>{{ vuelo.price.base }}</span>
+                </mat-card-title>
+            </mat-card>
+            <mat-divider></mat-divider>
+        </ng-container>
+      </div>
+    </div>
+    </ng-container>
