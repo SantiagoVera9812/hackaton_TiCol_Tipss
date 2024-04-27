@@ -1,52 +1,81 @@
 <div class="contenedor-todo">
   <div class="contenedor-login">
-    <form class="form">
+    <form class="form"  (ngSubmit)="onSubmit()" [formGroup]="userForm">
       <h2 class="titulo-login">Registrarse</h2>
 
       <div class="contenedor-inputs">
         <div class="flex-column"></div>
         <div class="cont">
           <div class="inputForm">
-            <input type="text" class="input" placeholder="Nombre">
+            <mat-form-field appearance="fill">
+              <mat-label>Nombre</mat-label>
+              <input matInput name='nombre' type="text" placeholder="Nombre" formControlName="nombre">
+              <mat-error *ngIf="hasError('nombre', 'required')">Nombre es requerido.</mat-error>
+            </mat-form-field>
           </div>
         
-        <div class="flex-column"></div>
+          <div class="flex-column"></div>
           <div class="inputForm">        
-            <input type="text" class="input" placeholder="Apellido">
+            <mat-form-field appearance="fill">
+              <mat-label>Apellido</mat-label>
+              <input matInput name="apellido" type="text" placeholder="Apellido" formControlName="apellido">
+              <mat-error *ngIf="hasError('apellido', 'required')">Apellido es requerido.</mat-error>
+            </mat-form-field>
           </div>
   
           <div class="flex-column"></div>
           <div class="inputForm">        
-            <input type="text" class="input" placeholder="Correo">
+            <mat-form-field appearance="fill">
+              <mat-label>Correo</mat-label>
+              <input matInput name="correo" type="email" placeholder="Correo" formControlName="correo">
+              <mat-error *ngIf="hasError('correo', 'required')">Correo es requerido.</mat-error>
+              <mat-error *ngIf="hasError('correo', 'email')">Correo no válido.</mat-error>
+            </mat-form-field>
           </div>
-  
+
           <div class="flex-column"></div>
-          <div class="inputForm">        
-            <input type="text" class="input" placeholder="Ciudad">
-          </div>
-        </div>
+    <div class="inputForm">        
+      <mat-form-field appearance="fill">
+        <mat-label>Ciudad</mat-label>
+        <input matInput name="ciudad" type="text" placeholder="Ciudad" formControlName="ciudad">
+        <mat-error *ngIf="hasError('ciudad', 'required')">Ciudad es requerida.</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
 
         <div class="cont2">
           <div class="flex-column"></div>
           <div class="inputForm">        
-            <input type="number" class="input" placeholder="Celular">
+            <mat-form-field appearance="fill">
+              <mat-label>Celular</mat-label>
+              <input matInput name="celular" type="tel" placeholder="Celular" formControlName="celular">
+              <mat-error *ngIf="hasError('celular', 'required')">Celular es requerido.</mat-error>
+              <mat-error *ngIf="hasError('celular', 'pattern')">Celular no válido. Debe tener el formato +1-123-456-7890.</mat-error>
+            </mat-form-field>
           </div>
   
           <div class="flex-column"></div>
           <div class="inputForm">        
-            <input type="text" class="input" placeholder="Contraseña">
+            <mat-form-field appearance="fill">
+              <mat-label>Contraseña</mat-label>
+              <input matInput name="contrasena" type="password" placeholder="Contraseña" formControlName="contrasena">
+              <mat-error *ngIf="hasError('contrasena', 'required')">Contraseña es requerida.</mat-error>
+            </mat-form-field>
           </div>
-  
-          <div class="flex-column"></div>
-          <div class="inputForm">        
-            <input type="text" class="input" placeholder="Confirmar Contraseña">
-          </div>
+        
+          
+  <div class="flex-column"></div>
+  <div class="inputForm">        
+    <mat-form-field appearance="fill">
+      <mat-label>Confirmar Contraseña</mat-label>
+      <input matInput name="confirmarContrasena" type="password" placeholder="Confirmar Contraseña" formControlName="confirmarContrasena">
+      <mat-error *ngIf="hasError('confirmarContrasena', 'required')">Confirmar Contraseña es requerida.</mat-error>
+      <mat-error *ngIf="hasError('confirmarContrasena', 'passwordMismatch')">Las contraseñas no coinciden.</mat-error>
+    </mat-form-field>
+  </div>
+</div>
         </div>
-  
-
-      </div>
-
-
+      
 
       <button class="button-submit">Registrarse</button>
       <p class="p">Ya tienes una cuenta? <a routerLink="/inicio-de-sesion" routerLinkActive="active"  type="submit"><span class="span">Iniciar Sesión</span></a>
