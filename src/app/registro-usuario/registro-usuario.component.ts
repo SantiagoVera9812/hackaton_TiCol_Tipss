@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { BackendUsuarioVueloService } from '../backend-usuario-vuelo.service';
+import { Usuario } from '../modelo/usuario.interface';
 
 @Component({
   selector: 'app-registro-usuario',
@@ -21,7 +24,7 @@ export class RegistroUsuarioComponent implements OnInit {
     confirmarContrasena: 'Las contraseñas no coinciden.'
   };
 
-  constructor(private router:Router, private formBuilder: FormBuilder){
+  constructor(private router:Router, private formBuilder: FormBuilder, private usuarioService: BackendUsuarioVueloService, private http: HttpClient){
 
     this.userForm = this.formBuilder.group({
       nombre: ['', Validators.required],
@@ -39,15 +42,22 @@ export class RegistroUsuarioComponent implements OnInit {
   onSubmit(){
 
     if (this.userForm.valid) {
-     
-      console.log('Form values:', this.userForm.value);
-      
+      const usuario: Usuario = this.userForm.value;
+      this.usuarioService.insertarUsuario(usuario).subscribe(
+        response => {
+          console.log('Usuario insertado correctamente:', response);
+          
+        },
+        error => {
+          console.error('Error al insertar usuario:', error);
+          
+        }
+      );
     } else {
-      console.log(this.userForm.value)
-      console.log('form invalido')
+      console.log('Formulario inválido');
       this.markFormGroupTouched(this.userForm);
-     
     }
+    this.router.navigate(['/inicio-de-sesion']);
   }
   
   markFormGroupTouched(formGroup: FormGroup) {
@@ -61,7 +71,7 @@ export class RegistroUsuarioComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    
   }
 
 
