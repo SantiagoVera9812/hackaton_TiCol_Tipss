@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { CountryRestApiService } from '../country-rest-api.service';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { CountryRestApiService } from '../country-rest-api.service';
 
 @Component({
   selector: 'app-lista-de-paises',
   templateUrl: './lista-de-paises.component.html',
-  styleUrls: ['./lista-de-paises.component.css']
+  styleUrls: ['./lista-de-paises.component.css'],
+  encapsulation: ViewEncapsulation.ShadowDom
+
 })
 export class ListaDePaisesComponent implements OnInit {
 
