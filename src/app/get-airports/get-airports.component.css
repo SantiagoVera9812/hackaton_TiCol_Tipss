@@ -16,10 +16,21 @@
   .flag {
     margin-left: 10px; 
   }
+
+  .inputForm {
+    border: 1.5px solid #ecedec;
+    border-radius: 10px;
+    height: auto; 
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    transition: 0.2s ease-in-out;
+    margin: 10px;
+  }
   
   .scrollable-container {
-    height: 400px; 
-    overflow-y: auto; 
+    display: flex;
+    flex-direction: column;
   }
   
   .country-list {

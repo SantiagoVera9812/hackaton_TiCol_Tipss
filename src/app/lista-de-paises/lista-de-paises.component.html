@@ -1,15 +1,17 @@
-<div class="scrollable-container">
-    <mat-divider></mat-divider>
-    <div class="country-list">
-      <ng-container *ngFor="let country of countries">
-          <mat-card class="clickable-card" (click)="redirectToCountry(country.cca2)">
-              <mat-card-title class="card-title">
-                  <span>{{ country.name }}</span>
-                  <span class="flag">{{ country.flag }}</span>
-              </mat-card-title>
-          </mat-card>
-          <mat-divider></mat-divider>
-      </ng-container>
-    </div>
-  </div>
   
+  <div class="scrollable-container">
+    <mat-divider></mat-divider>
+    <mat-form-field>
+        <mat-label>País</mat-label>
+        <mat-select #countrySelect>
+            <mat-option *ngFor="let country of countries" [value]="country.cca2">
+                {{ country.name }} {{ country.flag }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="redirectToCountry(countrySelect.value)">
+        Ir al país seleccionado
+    </button>
+</div>
+
+
