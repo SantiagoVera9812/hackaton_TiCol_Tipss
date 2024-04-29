@@ -10,6 +10,7 @@
 
 .price,
 .last-ticketing,
-.bookable-seats {
-    margin-bottom: 8px; /* Adjust this value as needed */
+.bookable-seats,
+.airline {
+    margin-bottom: 8px; 
 }
