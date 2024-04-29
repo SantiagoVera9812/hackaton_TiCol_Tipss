@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AirportApiKeyService } from '../airport-api-key.service';
+import { DataSharingService } from '../data-sharing.service';
 import { Vuelo } from '../modelo/vuelio.interface';
+
 
 @Component({
   selector: 'app-confirmar-busqueda-vuelo',
@@ -11,6 +13,7 @@ import { Vuelo } from '../modelo/vuelio.interface';
 })
 export class ConfirmarBusquedaVueloComponent implements OnInit {
 
+ 
   flights: Vuelo[] = [];
   vuelos: any[] = []
   
@@ -23,7 +26,7 @@ export class ConfirmarBusquedaVueloComponent implements OnInit {
   iataDeparture: string = '';
   iataOrigin: string = '';
   accessToken: string = '';
-  constructor(private activatedRouter: ActivatedRoute, private airportApiService: AirportApiKeyService) { }
+  constructor(private activatedRouter: ActivatedRoute, private airportApiService: AirportApiKeyService, private router: Router, private dataSharingService: DataSharingService) { }
 
   ngOnInit(): void {
 
@@ -75,7 +78,7 @@ export class ConfirmarBusquedaVueloComponent implements OnInit {
     this.airportApiService.getFlights(origin,destination,date,numOfAdults,authToken).subscribe(
       response => {
         this.vuelos.push(...response.data);
-        console.log(this.vuelos);
+        console.log("this.vuelos en componente", this.vuelos);
         
       }
     )
@@ -87,6 +90,13 @@ export class ConfirmarBusquedaVueloComponent implements OnInit {
     console.log(this.iataOrigin)
     console.log(this.iataDeparture)
     this.getToken(this.iataOrigin,this.iataDeparture,this.date,this.numOfAdults)
+    this.dataSharingService.vuelos = this.vuelos;
+    
+  }
+
+  emitirArreglo() {
+    this.router.navigate(["/vuelos"])
+    
   }
 
 }

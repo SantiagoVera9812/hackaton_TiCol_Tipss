@@ -25,6 +25,7 @@ import { ConfirmarBusquedaVueloComponent } from './confirmar-busqueda-vuelo/conf
 import { CountryRestApiService } from './country-rest-api.service';
 import { GetAirportsComponent } from './get-airports/get-airports.component';
 import { ListaDePaisesComponent } from './lista-de-paises/lista-de-paises.component';
+import { SeleccionarVuelosEncontradosComponent } from './seleccionar-vuelos-encontrados/seleccionar-vuelos-encontrados.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ListaDePaisesComponent } from './lista-de-paises/lista-de-paises.compon
     PresentacionComponent,
     ListaDePaisesComponent,
     GetAirportsComponent,
-    ConfirmarBusquedaVueloComponent
+    ConfirmarBusquedaVueloComponent,
+    SeleccionarVuelosEncontradosComponent
   ],
   imports: [
     BrowserModule,
