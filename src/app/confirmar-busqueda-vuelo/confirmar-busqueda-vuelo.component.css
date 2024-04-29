@@ -19,3 +19,11 @@
   .flight-info span:nth-child(4) {
     flex-grow: 1;
   }
+
+  .info-card {
+    padding: 16px; 
+  }
+  
+  .info-message {
+    margin-bottom: 8px; 
+  }
