@@ -6,10 +6,36 @@
                 <mat-card class="clickable-card">
                     <mat-card-content>
                         <div class="card-info">
-                            <div class="price">{{ vuelo.price.grandTotal }} {{ vuelo.price.currency }}</div>
-                            <div class="last-ticketing">{{ vuelo.lastTicketingDate }}</div>
-                            <div class="bookable-seats">{{ vuelo.numberOfBookableSeats }}</div>
+                            <div class="price">Precio: {{ vuelo.price.grandTotal }} {{ vuelo.price.currency }}</div>
+                            <div class="last-ticketing">Ultima fecha para agendar: {{ vuelo.lastTicketingDate }}</div>
+                            <div class="bookable-seats">Asientos disponibles: {{ vuelo.numberOfBookableSeats }}</div>
+                            <div class="airline">Codigo de la aerolinea: {{ vuelo.validatingAirlineCodes[0] }}</div>
+                              <!-- encontrar paradas -->
+                              <table>
+                                <thead>
+                                    <tr>
+                                        <th>Llegada</th>
+                                        <th>Salidas</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Iterar sobre los segmentos -->
+                                    <ng-container *ngFor="let segment of vuelo.itineraries[0].segments">
+                                        <tr>
+                                            <td>{{ segment.arrival.iataCode }} - {{ segment.arrival.at }}</td>
+                                            <td>{{ segment.departure.iataCode }} - {{ segment.departure.at }}</td>
+                                        </tr>
+                                        <div class="airline">Avion: {{segment.carrierCode}} - {{segment.aircraft.code}}</div>
+                                    </ng-container>
+                                </tbody>
+                            </table>
                         </div>
+                        <!-- cantidad de paradas -->
+                        <div class="segment-count">
+                            Total de paradas: {{ vuelo.itineraries[0].segments.length }}
+                        </div>
+                           
+                        
                     </mat-card-content>
                 </mat-card>
                 <mat-divider></mat-divider>
