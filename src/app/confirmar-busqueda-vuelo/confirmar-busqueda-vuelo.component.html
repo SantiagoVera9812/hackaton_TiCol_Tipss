@@ -20,12 +20,12 @@
 <form (ngSubmit)="submitForm()" *ngIf="showForm" class="example-form">
     <mat-form-field appearance="fill">
       <mat-label>Fecha de partida</mat-label>
-      <input matInput type="date" name="date" [(ngModel)]="date" required>
+      <input matInput type="date" name="date" [(ngModel)]="date" required placeholder="2024-04-03">
     </mat-form-field>
     
     <mat-form-field appearance="fill">
       <mat-label>Número de adultos</mat-label>
-      <input matInput type="number" name="numOfAdults" [(ngModel)]="numOfAdults" required>
+      <input matInput type="number" name="numOfAdults" [(ngModel)]="numOfAdults" required placeholder="1">
     </mat-form-field>
     
     <button mat-raised-button color="primary" type="submit">Enviar</button>
@@ -33,17 +33,15 @@
   
 
   <ng-container *ngIf="vuelos && vuelos.length > 0">
-    <div class="scrollable-container">
+
       <mat-divider></mat-divider>
-      <div class="country-list">
-        <ng-container *ngFor="let vuelo of vuelos">
-            <mat-card class="clickable-card">
-                <mat-card-title class="card-title">
-                    <span>{{ vuelo.price.base }}</span>
-                </mat-card-title>
-            </mat-card>
-            <mat-divider></mat-divider>
-        </ng-container>
-      </div>
-    </div>
-    </ng-container>
+        <mat-card class="info-card">
+          <mat-card-content>
+            <div class="info-message">
+              Se encontraron vuelos para el aeropuerto indicado.
+            </div>
+            <button mat-button color="primary" (click)="emitirArreglo()">Ver vuelos</button>
+          </mat-card-content>
+        </mat-card>
+  </ng-container>
+  

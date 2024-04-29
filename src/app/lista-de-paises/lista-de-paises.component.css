@@ -1,3 +1,5 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 .card-title {
     display: flex;
     justify-content: space-between;
@@ -8,8 +10,8 @@
   }
   
   .scrollable-container {
-    height: 400px; 
-    overflow-y: auto; 
+    display: flex;
+    flex-direction: column;
   }
   
   .country-list {

@@ -1,10 +1,12 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,14 +19,13 @@ import { PageFooterComponent } from './page-footer/page-footer.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 import { ToolBarHeaderComponent } from './tool-bar-header/tool-bar-header.component';
 import { UserCountryComponent } from './user-country/user-country.component';
-import { MatDividerModule } from '@angular/material/divider';
-import { FormsModule } from '@angular/forms';
 
 import { AirportApiKeyService } from './airport-api-key.service';
-import { CountryRestApiService } from './country-rest-api.service';
-import { ListaDePaisesComponent } from './lista-de-paises/lista-de-paises.component';
-import { GetAirportsComponent } from './get-airports/get-airports.component';
 import { ConfirmarBusquedaVueloComponent } from './confirmar-busqueda-vuelo/confirmar-busqueda-vuelo.component';
+import { CountryRestApiService } from './country-rest-api.service';
+import { GetAirportsComponent } from './get-airports/get-airports.component';
+import { ListaDePaisesComponent } from './lista-de-paises/lista-de-paises.component';
+import { SeleccionarVuelosEncontradosComponent } from './seleccionar-vuelos-encontrados/seleccionar-vuelos-encontrados.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ConfirmarBusquedaVueloComponent } from './confirmar-busqueda-vuelo/conf
     PresentacionComponent,
     ListaDePaisesComponent,
     GetAirportsComponent,
-    ConfirmarBusquedaVueloComponent
+    ConfirmarBusquedaVueloComponent,
+    SeleccionarVuelosEncontradosComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { ConfirmarBusquedaVueloComponent } from './confirmar-busqueda-vuelo/conf
     ReactiveFormsModule,
     HttpClientModule,
     MatDividerModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule
   ],
   providers: [
     CountryRestApiService,

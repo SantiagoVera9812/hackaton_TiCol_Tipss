@@ -21,46 +21,50 @@
       <button mat-stroked-button type="submit" [disabled]="!airportForm.valid">Buscar</button>
     </form>
 
-    <div class="horizontal-scroll-container">
-      <div class="scrollable-container">
-              <mat-divider></mat-divider>
-              <div class="country-list">
-                <ng-container *ngFor="let state of states">
-                  <mat-card class="clickable-card" (click)="getStateISO2(state)">
-                    <mat-card-title class="card-title">
-                      <span>{{ state.name }}</span>
-                    </mat-card-title>
-                  </mat-card>
-                  <mat-divider></mat-divider>
-                </ng-container>
-              </div>
+    <div class="scrollable-container">
+      <mat-divider></mat-divider>
+      <mat-form-field>
+          <mat-label>Estado Administrativo</mat-label>
+          <mat-select #stateSelect>
+              <mat-option *ngFor="let state of states" [value]="state">
+                {{ state.name }}
+              </mat-option>
+          </mat-select>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="getStateISO2(stateSelect.value)">
+          Ir al Estado Administrativo seleccionado
+      </button>
+      <div class="subtitulo">
+        <span>{{ selectedStateName ? 'Buscar aeropuerto en: ' + selectedStateName : 'Selecciona en donde quieres buscar un aeropuerto' }}</span>
+        <div class="button-container">
+          <button mat-raised-button color="primary" (click)="getToken(selectedStateName, countyCode)">Buscar</button>
+        </div>
       </div>
-
-      <div class="scrollable-container">
-              <mat-divider></mat-divider>
-              <div class="country-list">
-                <ng-container *ngIf="city && city.length > 0">
-                  <ng-container *ngFor="let itBeACity of city">
-                    <mat-card class="clickable-card" (click)="getCountryName(itBeACity)">
-                      <mat-card-title class="card-title-small">
-                        <span>{{ itBeACity.name }}</span>
-                      </mat-card-title>
-                    </mat-card>
-                    <mat-divider></mat-divider>
-                  </ng-container>
-                </ng-container>
-              </div>
-      </div>
-    </div>
-  </mat-card-content>
-
-
-<div class="subtitulo">
-  <span>{{ selectedStateName ? 'Buscar aeropuerto en: ' + selectedStateName : 'Selecciona en donde quieres buscar un aeropuerto' }}</span>
-  <div class="button-container">
-    <button mat-raised-button color="primary" (click)="getToken(selectedStateName, countyCode)">Buscar</button>
   </div>
-</div>
+
+
+      <div class="scrollable-container">
+              <mat-divider></mat-divider>
+              <div class="inputForm">
+                <ng-container *ngIf="city && city.length > 0">
+                  <mat-form-field>
+                    <mat-label>Ciudad</mat-label>
+                    <mat-select #citySelect>
+                        <mat-option *ngFor="let itBeACity of city" [value]="itBeACity">
+                          {{ itBeACity.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+                <button mat-raised-button color="primary" (click)="getCountryName(citySelect.value)">
+                    Ir a la ciudad seleccionado
+                </button>
+                  
+              </ng-container>
+                
+              </div>
+      </div>
+  </mat-card-content>
 
 
 <ng-container *ngIf="airportArray && airportArray.length > 0">
