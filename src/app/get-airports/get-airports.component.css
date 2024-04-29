@@ -42,4 +42,23 @@
   .button-container {
     margin-top: 10px; 
   }
+
+  .contenedor-principal{
+    width: 100%;
+    height: 20vh;
+    background-color: #EC0000;
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+  }
+
+  .contenedor-principal svg{
+    color: white;
+  }
+
+  .contendor-cuerpo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
