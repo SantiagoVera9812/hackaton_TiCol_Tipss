@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BackendUsuarioVueloService } from '../backend-usuario-vuelo.service';
 import { DataSharingService } from '../data-sharing.service';
 import { Usuario } from '../modelo/usuario.interface';
@@ -15,7 +16,7 @@ export class SeleccionarVuelosEncontradosComponent implements OnInit {
   numbers: number;
   usuario: Usuario;
 
-  constructor(private dataSharingService: DataSharingService, private backendUsuarioVueloService: BackendUsuarioVueloService) {
+  constructor(private dataSharingService: DataSharingService, private backendUsuarioVueloService: BackendUsuarioVueloService, private router: Router) {
     this.usuario = this.dataSharingService.usuario;
     this.vuelos = this.dataSharingService.vuelos;
     this.numbers = this.dataSharingService.numbers;
@@ -78,10 +79,29 @@ this.backendUsuarioVueloService.insertarVuelo(vueloSeleccionado).subscribe(
   }
 )
 
-
+this.backendUsuarioVueloService.infoUsuario(usuarioVuelo.correo,usuarioVuelo.contrasena).subscribe(
+  response => {
+    console.log('respuesta info usuario', response)
+    console.log(response.usuarioID)
+    this.backendUsuarioVueloService.vuelosUsuario(response.usuarioID).subscribe(
+      response => {
+        console.log('vuelos del usuario', response)
+      },
+      error => {
+        console.log(error)
+      }
+    )
+  },
+  error => {
+    console.log(error);
+    
+  }
+)
 
 console.log('usuario vuelo', usuarioVuelo)
 console.log('vuelo seleccionada', vueloSeleccionado)
+
+this.router.navigate(['/infoUsuario']);
      
 }
 }

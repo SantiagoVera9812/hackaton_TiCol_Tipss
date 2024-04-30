@@ -7,6 +7,7 @@ import { PresentacionComponent } from './landing-page/presentacion/presentacion.
 import { LoremIpsumPruebaComponent } from './lorem-ipsum-prueba/lorem-ipsum-prueba.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 import { SeleccionarVuelosEncontradosComponent } from './seleccionar-vuelos-encontrados/seleccionar-vuelos-encontrados.component';
+import { VuelosDeUsuarioComponent } from './vuelos-de-usuario/vuelos-de-usuario.component';
 
 const routes: Routes = [
   { path: 'inicio-de-sesion', component: InicioSesionComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'country/:id', component: GetAirportsComponent},
   {path: 'country/:id/:iataDeparture', component: ConfirmarBusquedaVueloComponent},
   {path: 'vuelos', component: SeleccionarVuelosEncontradosComponent},
+  {path: 'infoUsuario', component: VuelosDeUsuarioComponent},
 
   //Si se escribe una ruta inexistente, redirecciona a landing page
   {path: '**', component: PresentacionComponent}

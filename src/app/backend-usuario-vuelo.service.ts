@@ -12,7 +12,8 @@ export class BackendUsuarioVueloService {
   private baseUrl = '/registro-usuario';
   private inicioUrl = '/inicio-sesion';
   private getUrl = '/conseguir-info-usuario';
-  private insertarVueloUrl = '/Vuelo/agregar'
+  private insertarVueloUrl = '/Vuelo/agregar';
+  private vuelosDeUsuarioUrl = '/vuelos-del-usuario';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -39,5 +40,12 @@ export class BackendUsuarioVueloService {
         .set('contraseña', contraseña)
         return this.httpClient.post<any>(this.getUrl, null, { params });
       }
+
+      vuelosUsuario(usuarioId: number): Observable<any>{
+        const params = new HttpParams()
+          .set('usuarioId', usuarioId)
+          
+          return this.httpClient.post<any>(this.vuelosDeUsuarioUrl, null, { params });
+        }
   }
 
