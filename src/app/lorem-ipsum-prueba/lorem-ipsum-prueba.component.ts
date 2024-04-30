@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AuthServiceService } from '../auth-service.service';
 import { DataSharingService } from '../data-sharing.service';
 import { Usuario } from '../modelo/usuario.interface';
 
@@ -14,8 +15,9 @@ export class LoremIpsumPruebaComponent implements OnInit {
 
   usuario: Usuario;
 
-  constructor(private dataSharingService: DataSharingService) { 
+  constructor(private dataSharingService: DataSharingService, private authService: AuthServiceService) { 
     this.usuario = this.dataSharingService.usuario
+    
   }
 
   ngOnInit(): void {
