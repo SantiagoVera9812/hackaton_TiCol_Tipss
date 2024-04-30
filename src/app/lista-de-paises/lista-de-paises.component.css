@@ -1,4 +1,3 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 .card-title {
     display: flex;
@@ -17,3 +16,67 @@
   .country-list {
     padding: 10px;
   }
+
+
+  .mat-raised-button {
+    right: 300px !important;  
+    top: 60px !important;
+  }
+
+  button {
+    cursor: pointer !important;
+    font-weight: 700 ;
+    transition: all .2s !important;
+    padding: 10px 20px !important;
+    border-radius: 100px !important;
+    background: #EC0000 !important;
+    border: 1px solid transparent !important;
+    display: flex !important;
+    align-items: center !important;
+    font-size: 15px !important;
+    justify-content:center !important;
+  }
+
+  button span{
+    color: white;
+    margin-left: 15%;
+    margin-right: 35%;
+  }
+  
+  button:hover {
+    background: #EC0000 !important;
+  }
+  
+  button > svg {
+    width: 34px !important;
+    transition: transform .3s ease-in-out !important;
+    color: white !important;
+  }
+  
+  button:hover svg {
+    transform: translateX(10px) !important;
+  }
+  
+  button:active {
+    transform: scale(0.95) !important;
+  }
+
+  .mat-form-field{
+    border: 3px solid #EC0000 !important;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    text-decoration: none !important;
+    margin-top: -40%  !important;
+  }
+
+  .label{
+    font-weight: bolder !important;
+    font-size: 20px !important;
+  }
+
+  .mat-select-arrow::after {
+    font-size: 24px !important; /* Cambia el tamaño del icono a 24px, ajusta según necesites */
+}
+  
