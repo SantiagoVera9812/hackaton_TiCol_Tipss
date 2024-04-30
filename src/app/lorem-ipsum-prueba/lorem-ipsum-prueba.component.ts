@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { DataSharingService } from '../data-sharing.service';
+import { Usuario } from '../modelo/usuario.interface';
 
 @Component({
   
@@ -10,9 +12,15 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class LoremIpsumPruebaComponent implements OnInit {
 
-  constructor() { }
+  usuario: Usuario;
+
+  constructor(private dataSharingService: DataSharingService) { 
+    this.usuario = this.dataSharingService.usuario
+  }
 
   ngOnInit(): void {
+
+    console.log("lorem ipsum", this.usuario)
   }
 
 }

@@ -1,14 +1,21 @@
+import { Usuario } from "./usuario.interface";
 
+export interface Parada {
+    llegada: string;
+    salida: string;
+    avion: string;
+}
 
-export interface Vuelo{
-    origin: string;
-    destination: string;
-    departureDateTime: string;
-    arrivalDateTime: string;
-    duration: string;
-    flightNumber: string;
-    aircraftType: string;
-    price: number;
-
+export interface Vuelo {
+    price: {
+        grandTotal: number;
+        currency: string;
+    };
+    lastTicketingDate: string;
+    numeroDeParadas: number;
+    numberOfBookableSeats: number;
+    validatingAirlineCodes: string;
+    segmentos: Parada[];
+    usuarios: Usuario[];
 }
 

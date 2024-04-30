@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BackendUsuarioVueloService } from '../backend-usuario-vuelo.service';
+import { DataSharingService } from '../data-sharing.service';
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -15,7 +16,7 @@ export class InicioSesionComponent implements OnInit {
   correoIntento: string = '';
   contrasenaIntento: string = '';
 
-  constructor(private router:Router, private formBuilder: FormBuilder, private inicioSesionService: BackendUsuarioVueloService){
+  constructor(private router:Router, private formBuilder: FormBuilder, private inicioSesionService: BackendUsuarioVueloService, private dataSharingService: DataSharingService){
 
     this.userForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -35,7 +36,19 @@ export class InicioSesionComponent implements OnInit {
       response => {
         console.log(response)
         if(response){
-          this.router.navigate(['/lorem-ipsum'])
+
+          this.inicioSesionService.infoUsuario(this.correoIntento,this.contrasenaIntento).subscribe(
+            response => {
+              console.log(response)
+              this.dataSharingService.usuario = response;
+              console.log('En data sharing service', this.dataSharingService.usuario)
+              this.router.navigate(['/lorem-ipsum'])
+            },
+            error => {
+              console.log(error)
+            }
+          )
+          
         }else{
           console.log('correo y contrasena no existe')
         }

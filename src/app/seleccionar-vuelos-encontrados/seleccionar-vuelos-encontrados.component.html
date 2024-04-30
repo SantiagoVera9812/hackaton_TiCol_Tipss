@@ -5,6 +5,7 @@
             <ng-container *ngFor="let vuelo of vuelos">
                 <mat-card class="clickable-card">
                     <mat-card-content>
+                        
                         <div class="card-info">
                             <div class="price">Precio: {{ vuelo.price.grandTotal }} {{ vuelo.price.currency }}</div>
                             <div class="last-ticketing">Ultima fecha para agendar: {{ vuelo.lastTicketingDate }}</div>
@@ -27,15 +28,17 @@
                                         </tr>
                                         <div class="airline">Avion: {{segment.carrierCode}} - {{segment.aircraft.code}}</div>
                                     </ng-container>
+                                    
                                 </tbody>
                             </table>
                         </div>
+
                         <!-- cantidad de paradas -->
                         <div class="segment-count">
                             Total de paradas: {{ vuelo.itineraries[0].segments.length }}
                         </div>
                            
-                        
+                        <button mat-button color="primary" (click)="registrarVueloSeleccionado(vuelo)">Seleccionar Vuelo</button>
                     </mat-card-content>
                 </mat-card>
                 <mat-divider></mat-divider>

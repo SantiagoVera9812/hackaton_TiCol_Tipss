@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } fro
 import { ActivatedRoute, Router } from '@angular/router';
 import { AirportApiKeyService } from '../airport-api-key.service';
 import { CountryRestApiService } from '../country-rest-api.service';
+import { DataSharingService } from '../data-sharing.service';
+import { Usuario } from '../modelo/usuario.interface';
 
 @Component({
   selector: 'app-get-airports',
@@ -31,10 +33,15 @@ export class GetAirportsComponent implements OnInit {
   countryUser: string = '';
   error: string = '';
 
+  usuario: Usuario
 
-  constructor(private activatedRouter: ActivatedRoute, private router: Router, private airportService: AirportApiKeyService, private countryCityApiService: CountryRestApiService) { }
+
+  constructor(private activatedRouter: ActivatedRoute, private router: Router, private airportService: AirportApiKeyService, private countryCityApiService: CountryRestApiService,private dataSharingService: DataSharingService) { 
+    this.usuario = this.dataSharingService.usuario
+  }
 
   ngOnInit(): void {
+    console.log('En get airports', this.usuario)
     this.activatedRouter.params.subscribe(params => {
 
       this.countyCode = params['id'];

@@ -1,3 +1,5 @@
+import { Vuelo } from "./vuelio.interface";
+
 export interface Usuario{
 
     nombre: string;
@@ -6,5 +8,6 @@ export interface Usuario{
     ciudad: string;
     celular: string;
     contrasena: string;
+    vuelos: Vuelo[];
 
 }
