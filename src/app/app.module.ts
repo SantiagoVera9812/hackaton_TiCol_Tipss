@@ -30,6 +30,7 @@ import { CountryRestApiService } from './country-rest-api.service';
 import { GetAirportsComponent } from './get-airports/get-airports.component';
 import { ListaDePaisesComponent } from './lista-de-paises/lista-de-paises.component';
 import { SeleccionarVuelosEncontradosComponent } from './seleccionar-vuelos-encontrados/seleccionar-vuelos-encontrados.component';
+import { PaqueteTuristicoComponent } from './paquete-turistico/paquete-turistico.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { SeleccionarVuelosEncontradosComponent } from './seleccionar-vuelos-enco
     ListaDePaisesComponent,
     GetAirportsComponent,
     ConfirmarBusquedaVueloComponent,
-    SeleccionarVuelosEncontradosComponent
+    SeleccionarVuelosEncontradosComponent,
+    PaqueteTuristicoComponent
   ],
   imports: [
     BrowserModule,
