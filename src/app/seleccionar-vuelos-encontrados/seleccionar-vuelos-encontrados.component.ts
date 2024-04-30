@@ -32,6 +32,8 @@ export class SeleccionarVuelosEncontradosComponent implements OnInit {
 
   registrarVueloSeleccionado(vuelo: any) {
 
+    console.log('validating airline', vuelo.validatingAirlineCodes[0])
+
     const usuarioVuelo = this.usuario;
 
     const paradas: Parada[] = [];
@@ -47,14 +49,14 @@ export class SeleccionarVuelosEncontradosComponent implements OnInit {
   });
 
     const vueloSeleccionado: Vuelo = {
-      price: {
-          grandTotal: vuelo.price.grandTotal,
+      precio: {
+          precio: vuelo.price.grandTotal,
           currency: vuelo.price.currency
       },
       lastTicketingDate: vuelo.lastTicketingDate,
       numberOfBookableSeats: vuelo.numberOfBookableSeats,
       validatingAirlineCodes: vuelo.validatingAirlineCodes[0],
-      segmentos: paradas,
+      paradas: paradas,
       numeroDeParadas: vuelo.itineraries[0].segments.length,
       usuarios: [] 
 
@@ -78,8 +80,8 @@ this.backendUsuarioVueloService.insertarVuelo(vueloSeleccionado).subscribe(
 
 
 
-console.log(usuarioVuelo)
-console.log(vueloSeleccionado)
+console.log('usuario vuelo', usuarioVuelo)
+console.log('vuelo seleccionada', vueloSeleccionado)
      
 }
 }

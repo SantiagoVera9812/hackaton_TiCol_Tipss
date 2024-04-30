@@ -7,15 +7,15 @@ export interface Parada {
 }
 
 export interface Vuelo {
-    price: {
-        grandTotal: number;
+    precio: {
+        precio: string;
         currency: string;
     };
     lastTicketingDate: string;
     numeroDeParadas: number;
     numberOfBookableSeats: number;
     validatingAirlineCodes: string;
-    segmentos: Parada[];
+    paradas: Parada[];
     usuarios: Usuario[];
 }
 
