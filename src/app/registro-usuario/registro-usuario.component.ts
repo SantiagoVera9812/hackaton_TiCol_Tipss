@@ -45,7 +45,13 @@ export class RegistroUsuarioComponent implements OnInit {
       const usuario: Usuario = this.userForm.value;
       this.usuarioService.insertarUsuario(usuario).subscribe(
         response => {
-          console.log('Usuario insertado correctamente:', response);
+          if(response){
+            console.log('Usuario insertado correctamente:', response);
+
+            this.router.navigate(['/inicio-de-sesion']);
+          }else{
+            console.log('correo y contrasena ya existe')
+          }
           
         },
         error => {
@@ -57,7 +63,7 @@ export class RegistroUsuarioComponent implements OnInit {
       console.log('Formulario inválido');
       this.markFormGroupTouched(this.userForm);
     }
-    this.router.navigate(['/inicio-de-sesion']);
+    
   }
   
   markFormGroupTouched(formGroup: FormGroup) {
