@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AirportApiKeyService } from '../airport-api-key.service';
 import { CountryRestApiService } from '../country-rest-api.service';
@@ -7,8 +7,7 @@ import { CountryRestApiService } from '../country-rest-api.service';
   selector: 'app-get-airports',
   templateUrl: './get-airports.component.html',
   styleUrls: ['./get-airports.component.scss'],
-  encapsulation: ViewEncapsulation.ShadowDom
-
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class GetAirportsComponent implements OnInit {
   @Input() isEmbedded: boolean = false;
@@ -30,6 +29,16 @@ export class GetAirportsComponent implements OnInit {
   ipAddress: string = '';
   countryUser: string = '';
   error: string = '';
+  slides: any[] = [/* array de diapositivas */];
+  currentSlideIndex = 0;
+
+  prevSlide() {
+    this.currentSlideIndex = (this.currentSlideIndex - 1 + this.slides.length) % this.slides.length;
+  }
+
+  nextSlide() {
+    this.currentSlideIndex = (this.currentSlideIndex + 1) % this.slides.length;
+  }
 
 
   constructor(private activatedRouter: ActivatedRoute, private router: Router, private airportService: AirportApiKeyService, private countryCityApiService: CountryRestApiService) { }

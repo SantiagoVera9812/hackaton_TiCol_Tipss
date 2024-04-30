@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA,NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -20,13 +20,16 @@ import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.co
 import { ToolBarHeaderComponent } from './tool-bar-header/tool-bar-header.component';
 import { UserCountryComponent } from './user-country/user-country.component';
 
+import { register as registerSwiperElements} from 'swiper/element/bundle';
+registerSwiperElements();
+
+
 import { AirportApiKeyService } from './airport-api-key.service';
 import { ConfirmarBusquedaVueloComponent } from './confirmar-busqueda-vuelo/confirmar-busqueda-vuelo.component';
 import { CountryRestApiService } from './country-rest-api.service';
 import { GetAirportsComponent } from './get-airports/get-airports.component';
 import { ListaDePaisesComponent } from './lista-de-paises/lista-de-paises.component';
 import { SeleccionarVuelosEncontradosComponent } from './seleccionar-vuelos-encontrados/seleccionar-vuelos-encontrados.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,12 +58,13 @@ import { SeleccionarVuelosEncontradosComponent } from './seleccionar-vuelos-enco
     HttpClientModule,
     MatDividerModule,
     FormsModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   providers: [
     CountryRestApiService,
     AirportApiKeyService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
