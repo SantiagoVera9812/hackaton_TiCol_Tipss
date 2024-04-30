@@ -31,6 +31,9 @@ import { GetAirportsComponent } from './get-airports/get-airports.component';
 import { ListaDePaisesComponent } from './lista-de-paises/lista-de-paises.component';
 import { SeleccionarVuelosEncontradosComponent } from './seleccionar-vuelos-encontrados/seleccionar-vuelos-encontrados.component';
 import { PaqueteTuristicoComponent } from './paquete-turistico/paquete-turistico.component';
+import { VuelosDeUsuarioComponent } from './vuelos-de-usuario/vuelos-de-usuario.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +49,8 @@ import { PaqueteTuristicoComponent } from './paquete-turistico/paquete-turistico
     ConfirmarBusquedaVueloComponent,
     SeleccionarVuelosEncontradosComponent,
     PaqueteTuristicoComponent
+    VuelosDeUsuarioComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,

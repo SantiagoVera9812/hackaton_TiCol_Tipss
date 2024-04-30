@@ -1,0 +1,21 @@
+<ng-container *ngIf="vuelos && vuelos.length > 0">
+    <div class="scrollable-container">
+        <mat-divider></mat-divider>
+        <div class="country-list">
+            <ng-container *ngFor="let vuelo of vuelos">
+                <mat-card class="clickable-card">
+                    <mat-card-content>
+                        
+                        <div class="card-info">
+                            <div class="price">Precio: {{ vuelo.precio.precio }} {{ vuelo.precio.currency }}</div>
+                            <div class="last-ticketing">Ultima fecha para agendar: {{ vuelo.lastTicketingDate }}</div>
+                            <div class="bookable-seats">Asientos disponibles: {{ vuelo.numberOfBookableSeats }}</div>
+                
+                        </div>                        
+                    </mat-card-content>
+                </mat-card>
+                <mat-divider></mat-divider>
+            </ng-container>
+        </div>
+    </div>
+</ng-container>

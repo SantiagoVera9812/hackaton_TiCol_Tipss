@@ -1,0 +1,15 @@
+.country-list {
+    padding: 16px; 
+}
+
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.price,
+.last-ticketing,
+.bookable-seats{
+    margin-bottom: 8px; 
+}

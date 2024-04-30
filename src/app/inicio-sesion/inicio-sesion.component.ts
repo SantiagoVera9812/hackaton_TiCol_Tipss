@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthServiceService } from '../auth-service.service';
 import { BackendUsuarioVueloService } from '../backend-usuario-vuelo.service';
 import { DataSharingService } from '../data-sharing.service';
 
@@ -16,7 +17,7 @@ export class InicioSesionComponent implements OnInit {
   correoIntento: string = '';
   contrasenaIntento: string = '';
 
-  constructor(private router:Router, private formBuilder: FormBuilder, private inicioSesionService: BackendUsuarioVueloService, private dataSharingService: DataSharingService){
+  constructor(private router:Router, private formBuilder: FormBuilder, private inicioSesionService: BackendUsuarioVueloService, private dataSharingService: DataSharingService, private authService: AuthServiceService){
 
     this.userForm = this.formBuilder.group({
       username: ['', Validators.required],
@@ -36,11 +37,12 @@ export class InicioSesionComponent implements OnInit {
       response => {
         console.log(response)
         if(response){
-
+           
           this.inicioSesionService.infoUsuario(this.correoIntento,this.contrasenaIntento).subscribe(
             response => {
               console.log(response)
               this.dataSharingService.usuario = response;
+              this.authService.login();
               console.log('En data sharing service', this.dataSharingService.usuario)
               this.router.navigate(['/lorem-ipsum'])
             },
@@ -64,6 +66,7 @@ export class InicioSesionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.authService.logout()
   }
 
 }
