@@ -4,7 +4,8 @@ export default [
           '/registro-usuario',
           '/inicio-sesion',
           '/conseguir-info-usuario',
-          '/Vuelo/agregar'
+          '/Vuelo/agregar',
+          '/vuelos-del-usuario'
       ],
       target: 'http://localhost:8080',
       secure: false
