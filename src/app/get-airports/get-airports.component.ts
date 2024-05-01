@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AirportApiKeyService } from '../airport-api-key.service';
 import { CountryRestApiService } from '../country-rest-api.service';
@@ -15,7 +15,7 @@ export class GetAirportsComponent implements OnInit {
   @Input() isEmbedded: boolean = false;
   @Output() iataCodeChange = new EventEmitter<string>();
   
-
+  poisCity: any[] = [];
   airports: any[] = [];
   airportArray: any[] = [];
   city: any[] = [];
@@ -23,6 +23,7 @@ export class GetAirportsComponent implements OnInit {
   accessToken: string = '';
   countyrCityAccessToken = '';
   countyCode: string = '';
+  countryName: string = '';
   selectedStateName: string = '';
   keywordAirport: string = '';
   keywordCity: string = '';
@@ -59,6 +60,16 @@ export class GetAirportsComponent implements OnInit {
     }
 
     );
+
+    this.countryCityApiService.getOnlyAndOnlyNameByCode(this.countyCode).subscribe(
+      response => {
+        
+          this.countryName = response
+      },
+      error => {
+        console.log(error)
+      }
+    )
 
     this.countryCityApiService.getUserIPAddress().subscribe(
       ipAddress => {
@@ -207,6 +218,36 @@ export class GetAirportsComponent implements OnInit {
     );
   }
 
+  redirigirAPaquetes() {    
+    // Redirige a la ruta de paquetes turísticos
+    this.router.navigate(['/paquetes', this.countyCode]);
+  }
+
+  getCityCoordinates(cityName: any){
+    console.log('Dentro de city coordinates', cityName.latitude)
+    console.log('Dentro de city coordinates', cityName.longitude)
+
+    this.airportService.getToken().subscribe(
+      response => {
+        console.log(response)
+        this.airportService.getPointsOfInterest(Number(cityName.latitude),Number(cityName.longitude),response.access_token).subscribe(
+          response =>{
+            console.log(response.data)
+            this.poisCity = response.data;
+            console.log(this.poisCity);
+            this.dataSharingService.poisCity = this.poisCity
+            this.router.navigate(['/pointOfInterest',cityName.name])
+          },
+          error => {
+            console.log(error)
+          }
+        )
+      }, error => {
+        console.log(error)
+      }
+    )
+
+  }
 }
 
 

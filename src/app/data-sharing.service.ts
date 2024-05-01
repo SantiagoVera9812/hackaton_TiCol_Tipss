@@ -8,6 +8,7 @@ export class DataSharingService {
 
   vuelos: any[] = [];
   numbers: number = 0
+  poisCity: any[] = [];
   usuario: Usuario = {
     nombre: 'John',
     apellido: 'Doe',

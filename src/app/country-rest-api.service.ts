@@ -26,7 +26,13 @@ export class CountryRestApiService {
       map((data: any) => data.country)
     );
   }
-
+   
+  getOnlyAndOnlyNameByCode(code: string): Observable<string> {
+    return this.http.get<any>(`${this.apiUrl}alpha/${code}`).pipe(
+      tap(response => console.log(response[0].name.common)), 
+      map(response => response[0].name.common)
+    );
+  }
   
 
   getCountryNameByCode(code: string): Observable<string> {

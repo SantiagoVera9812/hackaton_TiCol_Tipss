@@ -147,3 +147,8 @@
 .swiper-pagination >>> .swiper-pagination-bullet-active {
     background-color: white;
 }
+
+.centro-horizontal {
+  display: flex;
+  justify-content: center;
+}

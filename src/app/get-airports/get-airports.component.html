@@ -7,8 +7,11 @@
 
 <div class="contenedor-cuerpo">
   <div class="container-titulos">
-    <h1>Ahora esocoge el aeropuerto desde {{this.countyCode}}</h1>
+    <h1>Ahora esocoge el aeropuerto desde {{this.countryName}}</h1>
     <h3>Pensamos en ti, por eso tienes 3 opciones para hacerlo</h3>
+    <div class="button-container">
+    <div class="centro-horizontal"><button (click)="redirigirAPaquetes()">Muestrame paquetes turisticos de este destino</button></div>
+  </div>
   </div>
   
 
@@ -101,7 +104,7 @@
                     </mat-select>
                 </mat-form-field>
                 
-                <button mat-raised-button color="primary" (click)="getCountryName(citySelect.value)">
+                <button mat-raised-button color="primary" (click)="getCityCoordinates(citySelect.value)">
                     Ir a la ciudad seleccionado
                 </button>
                   

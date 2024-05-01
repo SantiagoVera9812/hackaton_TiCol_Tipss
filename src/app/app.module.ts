@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { CUSTOM_ELEMENTS_SCHEMA,NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -20,7 +20,7 @@ import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.co
 import { ToolBarHeaderComponent } from './tool-bar-header/tool-bar-header.component';
 import { UserCountryComponent } from './user-country/user-country.component';
 
-import { register as registerSwiperElements} from 'swiper/element/bundle';
+import { register as registerSwiperElements } from 'swiper/element/bundle';
 registerSwiperElements();
 
 
@@ -29,10 +29,11 @@ import { ConfirmarBusquedaVueloComponent } from './confirmar-busqueda-vuelo/conf
 import { CountryRestApiService } from './country-rest-api.service';
 import { GetAirportsComponent } from './get-airports/get-airports.component';
 import { ListaDePaisesComponent } from './lista-de-paises/lista-de-paises.component';
-import { SeleccionarVuelosEncontradosComponent } from './seleccionar-vuelos-encontrados/seleccionar-vuelos-encontrados.component';
-import { PaqueteTuristicoComponent } from './paquete-turistico/paquete-turistico.component';
-import { VuelosDeUsuarioComponent } from './vuelos-de-usuario/vuelos-de-usuario.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { PaqueteTuristicoComponent } from './paquete-turistico/paquete-turistico.component';
+import { SeleccionarVuelosEncontradosComponent } from './seleccionar-vuelos-encontrados/seleccionar-vuelos-encontrados.component';
+import { VuelosDeUsuarioComponent } from './vuelos-de-usuario/vuelos-de-usuario.component';
+import { PointOfInterestComponent } from './point-of-interest/point-of-interest.component';
 
 @NgModule({
   declarations: [
@@ -48,9 +49,10 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     GetAirportsComponent,
     ConfirmarBusquedaVueloComponent,
     SeleccionarVuelosEncontradosComponent,
-    PaqueteTuristicoComponent
+    PaqueteTuristicoComponent,
     VuelosDeUsuarioComponent,
-    NavBarComponent
+    NavBarComponent,
+    PointOfInterestComponent
   ],
   imports: [
     BrowserModule,

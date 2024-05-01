@@ -17,6 +17,7 @@ export class AirportApiKeyService {
   private clientId = '6GDSkXgVcB9jzbrAroPZOxSzxHiQTf0H';
   private flightApiId = 'https://test.api.amadeus.com/v2/shopping/flight-offers';
   private clientSecret = 'oiuORAcfTs0Gstc7';
+  private pointOfInterestApi = 'https://test.api.amadeus.com/v1/reference-data/locations/pois'
 
   constructor(private http: HttpClient) { 
   }
@@ -80,5 +81,18 @@ export class AirportApiKeyService {
     });
 
     return this.http.get<any>(this.flightApiId,{params, headers})
+  }
+
+  getPointsOfInterest(latitude: number, longitude: number, authToken: string): Observable<any> {
+    
+    const params = new HttpParams()
+    .set('latitude', latitude.toString())
+    .set('longitude', longitude.toString())
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${authToken}`
+    });
+
+    return this.http.get<any>(this.pointOfInterestApi,{params, headers})
   }
 }

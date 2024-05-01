@@ -5,9 +5,10 @@ import { GetAirportsComponent } from './get-airports/get-airports.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { PresentacionComponent } from './landing-page/presentacion/presentacion.component';
 import { LoremIpsumPruebaComponent } from './lorem-ipsum-prueba/lorem-ipsum-prueba.component';
+import { PaqueteTuristicoComponent } from './paquete-turistico/paquete-turistico.component';
+import { PointOfInterestComponent } from './point-of-interest/point-of-interest.component';
 import { RegistroUsuarioComponent } from './registro-usuario/registro-usuario.component';
 import { SeleccionarVuelosEncontradosComponent } from './seleccionar-vuelos-encontrados/seleccionar-vuelos-encontrados.component';
-import { PaqueteTuristicoComponent } from './paquete-turistico/paquete-turistico.component';
 import { VuelosDeUsuarioComponent } from './vuelos-de-usuario/vuelos-de-usuario.component';
 
 const routes: Routes = [
@@ -18,8 +19,8 @@ const routes: Routes = [
   { path: 'country/:id', component: GetAirportsComponent},
   {path: 'country/:id/:iataDeparture', component: ConfirmarBusquedaVueloComponent},
   {path: 'vuelos', component: SeleccionarVuelosEncontradosComponent},
-  {path: 'paquetes', component: PaqueteTuristicoComponent},
-  
+  {path: 'paquetes/:id', component: PaqueteTuristicoComponent},
+  {path: 'pointOfInterest/:id', component: PointOfInterestComponent},
   {path: 'infoUsuario', component: VuelosDeUsuarioComponent},
 
   

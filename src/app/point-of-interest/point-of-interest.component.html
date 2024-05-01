@@ -1,0 +1,48 @@
+<app-tool-bar-header></app-tool-bar-header>
+<div class="todo">
+    <div class="izq">
+        <h1>En <span>{{this.countyCode}}</span> puedes ir a estos <span>magnificos lugares</span></h1>
+        <h3>Nuestro sistema busca puntos de interes pensados en ti, puedes modificarlos como desees</h3>
+    </div>
+
+    <div class="der"> 
+        <swiper-container class="mySwiper" effect="cards" grab-cursor="true"  autoplay-disable-on-interaction = "true"
+        mousewheel="true"
+        keyboard="true">
+        
+        <swiper-slide>
+            {{ poisCity[0].name }}
+        </swiper-slide>
+        <swiper-slide>
+            {{ poisCity[1].name }}
+        </swiper-slide>
+        <swiper-slide>
+            {{ poisCity[2].name }}
+        </swiper-slide>
+        <swiper-slide>
+            {{ poisCity[3].name }}
+        </swiper-slide>
+        <swiper-slide>
+            {{ poisCity[4].name }}
+        </swiper-slide>
+        <swiper-slide>
+            {{ poisCity[5].name }}
+        </swiper-slide>
+        <swiper-slide>
+            {{ poisCity[6].name }}
+        </swiper-slide>
+        <swiper-slide>
+            {{ poisCity[7].name }}
+        </swiper-slide>
+        <swiper-slide>
+            {{ poisCity[8].name }}
+        </swiper-slide>
+        <swiper-slide>
+            {{ poisCity[9].name }}
+        </swiper-slide>
+    
+          </swiper-container>
+
+    </div>
+
+</div>
